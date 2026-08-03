@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>For Temitope Rachel ❤️</title>
+    <style>
+        /* ===== SAME STYLES AS BEFORE ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --neon-pink: #ff2d95;
+            --neon-glow: 0 0 20px rgba(255, 45, 149, 0.6);
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 45, 149, 0.25);
+            --text-primary: #f0eef8;
+            --text-muted: rgba(240, 238, 248, 0.7);
+            --bg-dark: #0a0a0f;
+            --card-radius: 24px;
+            --transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 2rem;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-pink);
+            border-radius: 10px;
+            box-shadow: var(--neon-glow);
+        }
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(18px) saturate(1.2);
+            -webkit-backdrop-filter: blur(18px) saturate(1.2);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+            padding: 2.5rem 2.8rem;
+            transition: transform var(--transition), box-shadow var(--transition);
+        }
+        .glass-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 30px 80px rgba(255, 45, 149, 0.12), 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem 4rem;
+        }
+        .header-bar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 1rem 0 0.5rem;
+            position: relative;
+            z-index: 10;
+        }
+        .music-btn {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 60px;
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            padding: 0.6rem 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all var(--transition);
+            font-family: inherit;
+            letter-spacing: 0.3px;
+        }
+        .music-btn:hover {
+            border-color: var(--neon-pink);
+            box-shadow: var(--neon-glow);
+            transform: scale(1.03);
+        }
+        .music-btn .icon {
+            font-size: 1.4rem;
+            line-height: 1;
+        }
+        .music-btn .label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            opacity: 0.8;
+        }
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem 0 3rem;
+            position: relative;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 45, 149, 0.12);
+            border: 1px solid rgba(255, 45, 149, 0.25);
+            border-radius: 60px;
+            padding: 0.3rem 1.2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--neon-pink);
+            margin-bottom: 1.8rem;
+            backdrop-filter: blur(8px);
+        }
+        .hero h1 {
+            font-size: clamp(2.6rem, 10vw, 5.2rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 30%, var(--neon-pink) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 40px rgba(255, 45, 149, 0.2));
+        }
+        .hero .typewriter-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1em;
+            background: var(--neon-pink);
+            margin-left: 4px;
+            vertical-align: text-bottom;
+            animation: blink 0.9s step-end infinite;
+            border-radius: 2px;
+        }
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+        }
+        .hero-sub {
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-muted);
+            max-width: 520px;
+            margin: 0 auto;
+            font-weight: 300;
+            letter-spacing: 0.4px;
+        }
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .floating-heart {
+            position: absolute;
+            font-size: 1.4rem;
+            opacity: 0.3;
+            animation: floatHeart linear infinite;
+            color: var(--neon-pink);
+            filter: drop-shadow(0 0 8px rgba(255, 45, 149, 0.3));
+            user-select: none;
+        }
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(110vh) rotate(0deg) scale(0.6);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.35;
+            }
+            90% {
+                opacity: 0.35;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(720deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+        .message-section {
+            margin: 3rem 0 3.5rem;
+        }
+        .message-section .glass-card {
+            padding: 2.8rem 3rem;
+        }
+        .message-section .greeting {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.9;
+            margin-bottom: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 0.2px;
+        }
+        .message-section .greeting::first-letter {
+            font-size: 2.2rem;
+            color: var(--neon-pink);
+            font-weight: 600;
+            float: left;
+            margin-right: 6px;
+            line-height: 1;
+        }
+        .message-section .signature {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--neon-pink);
+            text-align: right;
+            letter-spacing: 0.5px;
+            margin-top: 0.5rem;
+        }
+        .message-section .signature small {
+            font-weight: 300;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        .divider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2.5rem 0;
+            color: rgba(255, 45, 149, 0.25);
+            font-size: 1.2rem;
+        }
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 45, 149, 0.2), transparent);
+        }
+        .surprise-section {
+            text-align: center;
+            margin: 1.5rem 0 3rem;
+        }
+        .surprise-btn {
+            background: linear-gradient(135deg, var(--neon-pink), #b8006a);
+            border: none;
+            border-radius: 60px;
+            padding: 1rem 3.2rem;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #fff;
+            cursor: pointer;
+            transition: all var(--transition);
+            box-shadow: 0 0 30px rgba(255, 45, 149, 0.25);
+            font-family: inherit;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+        .surprise-btn::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            border-radius: 60px;
+            background: linear-gradient(135deg, var(--neon-pink), #ff7eb3, var(--neon-pink));
+            background-size: 300% 300%;
+            z-index: -1;
+            animation: gradientShift 4s ease infinite;
+            filter: blur(8px);
+            opacity: 0.5;
+            transition: opacity var(--transition);
+        }
+        .surprise-btn:hover::before {
+            opacity: 0.9;
+        }
+        .surprise-btn:hover {
+            transform: scale(1.04);
+            box-shadow: 0 0 60px rgba(255, 45, 149, 0.4);
+        }
+        .surprise-btn:active {
+            transform: scale(0.97);
+        }
+        @keyframes gradientShift {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(20px) saturate(1.4);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+            padding: 1.5rem;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: radial-gradient(ellipse at 50% 30%, rgba(255, 45, 149, 0.08), rgba(10, 10, 15, 0.95));
+            backdrop-filter: blur(24px) saturate(1.3);
+            -webkit-backdrop-filter: blur(24px) saturate(1.3);
+            border: 1px solid rgba(255, 45, 149, 0.3);
+            border-radius: 32px;
+            padding: 3.5rem 3rem;
+            max-width: 540px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8), 0 0 80px rgba(255, 45, 149, 0.08);
+            transform: scale(0.92) translateY(30px);
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.5s ease;
+            opacity: 0;
+            position: relative;
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+        .modal-content .glow-ring {
+            position: absolute;
+            inset: -2px;
+            border-radius: 32px;
+            background: linear-gradient(135deg, var(--neon-pink), transparent, var(--neon-pink));
+            z-index: -1;
+            filter: blur(2px);
+            opacity: 0.3;
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        @keyframes pulseGlow {
+            0%,
+            100% {
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+        .modal-content .heart-big {
+            font-size: 4.2rem;
+            display: block;
+            margin-bottom: 1.2rem;
+            animation: heartPulse 1.6s ease-in-out infinite;
+        }
+        @keyframes heartPulse {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.18);
+            }
+        }
+        .modal-content h2 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, #fff 40%, var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.01em;
+        }
+        .modal-content p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            font-weight: 300;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+        .modal-close {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 45, 149, 0.2);
+            border-radius: 60px;
+            padding: 0.6rem 2rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition);
+            font-family: inherit;
+        }
+        .modal-close:hover {
+            background: rgba(255, 45, 149, 0.15);
+            border-color: var(--neon-pink);
+            box-shadow: var(--neon-glow);
+        }
+        .footer {
+            text-align: center;
+            padding: 3rem 0 1.5rem;
+            color: rgba(240, 238, 248, 0.2);
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+            font-weight: 300;
+        }
+        .footer span {
+            color: var(--neon-pink);
+            opacity: 0.5;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.2rem 1rem 3rem;
+            }
+            .glass-card {
+                padding: 1.8rem 1.5rem;
+                border-radius: 20px;
+            }
+            .message-section .glass-card {
+                padding: 1.8rem 1.5rem;
+            }
+            .hero {
+                min-height: 55vh;
+                padding: 1rem 0 2rem;
+            }
+            .hero h1 {
+                font-size: clamp(2rem, 8vw, 3.4rem);
+            }
+            .hero-badge {
+                font-size: 0.6rem;
+                padding: 0.2rem 0.9rem;
+            }
+            .modal-content {
+                padding: 2.2rem 1.5rem;
+                border-radius: 24px;
+            }
+            .modal-content h2 {
+                font-size: 1.4rem;
+            }
+            .modal-content .heart-big {
+                font-size: 3.2rem;
+            }
+            .surprise-btn {
+                padding: 0.8rem 2.2rem;
+                font-size: 1rem;
+                width: 100%;
+                max-width: 320px;
+            }
+            .music-btn {
+                padding: 0.4rem 1rem;
+                font-size: 0.95rem;
+            }
+            .music-btn .label {
+                font-size: 0.7rem;
+            }
+            .message-section .greeting {
+                font-size: 0.95rem;
+            }
+            .message-section .signature {
+                font-size: 1rem;
+            }
+            .divider {
+                margin: 1.8rem 0;
+            }
+        }
+        @media (max-width: 420px) {
+            .glass-card {
+                padding: 1.4rem 1.2rem;
+                border-radius: 16px;
+            }
+            .hero h1 {
+                font-size: clamp(1.6rem, 7vw, 2.6rem);
+            }
+            .modal-content {
+                padding: 1.8rem 1.2rem;
+            }
+            .modal-content h2 {
+                font-size: 1.2rem;
+            }
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="particles-canvas"></canvas>
+    <div class="hearts-container" id="heartsContainer" aria-hidden="true"></div>
+
+    <div class="container">
+
+        <header class="header-bar">
+            <button class="music-btn" id="musicBtn" aria-label="Toggle background music">
+                <span class="icon" id="musicIcon">🔊</span>
+                <span class="label" id="musicLabel">Play</span>
+            </button>
+        </header>
+
+        <section class="hero">
+            <div class="hero-badge">💖 just for you</div>
+            <h1>
+                <span id="typewriterText">Hey, Temitope Rachel ❤️</span>
+                <span class="typewriter-cursor" aria-hidden="true"></span>
+            </h1>
+            <p class="hero-sub">
+                You deserve a little reminder of how amazing you are.
+            </p>
+        </section>
+
+        <section class="message-section">
+            <div class="glass-card">
+                <div class="greeting">
+                    Temitope, you have a way of making everything feel lighter and brighter.
+                    This isn't for a special occasion—it's simply because you deserve to know how much you're appreciated.
+                    I hope this reminds you that you are loved, cherished, and truly one of a kind.
+                    Keep being the amazing person you are. The world—and my world—is better because of you.
+                </div>
+                <div class="signature">
+                    — Your Number One Fan <small>❤️</small>
+                </div>
+            </div>
+        </section>
+
+        <div class="divider" aria-hidden="true">
+            <span class="divider-line"></span>
+            <span>✦</span>
+            <span class="divider-line"></span>
+        </div>
+
+        <section class="surprise-section">
+            <button class="surprise-btn" id="surpriseBtn">
+                ✦ Click for a Surprise ✦
+            </button>
+        </section>
+
+        <footer class="footer">
+            made with <span>❤️</span> &nbsp;·&nbsp; for Temitope
+        </footer>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <div class="glow-ring" aria-hidden="true"></div>
+            <span class="heart-big" aria-hidden="true">❤️</span>
+            <h2 id="modalTitle">You are my favorite reason to smile.</h2>
+            <p>Thank you for being you, Temitope. You mean the world to me.</p>
+            <button class="modal-close" id="modalCloseBtn">Close</button>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            // ---------- PARTICLES ----------
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+            let animationId = null;
+            let width, height;
+
+            function resizeCanvas() {
+                width = canvas.width = window.innerWidth;
+                height = canvas.height = window.innerHeight;
+            }
+            window.addEventListener('resize', resizeCanvas);
+            resizeCanvas();
+
+            class Particle {
+                constructor() {
+                    this.reset();
+                }
+                reset() {
+                    this.x = Math.random() * width;
+                    this.y = Math.random() * height;
+                    this.size = Math.random() * 2.8 + 1.2;
+                    this.speedX = (Math.random() - 0.5) * 0.35;
+                    this.speedY = (Math.random() - 0.5) * 0.35;
+                    this.opacity = Math.random() * 0.5 + 0.15;
+                    this.pulse = Math.random() * Math.PI * 2;
+                    this.pulseSpeed = 0.008 + Math.random() * 0.012;
+                }
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    this.pulse += this.pulseSpeed;
+                    if (this.x < -10) this.x = width + 10;
+                    if (this.x > width + 10) this.x = -10;
+                    if (this.y < -10) this.y = height + 10;
+                    if (this.y > height + 10) this.y = -10;
+                }
+                draw() {
+                    const glow = 0.6 + 0.4 * Math.sin(this.pulse);
+                    const alpha = this.opacity * (0.7 + 0.3 * Math.sin(this.pulse * 0.7));
+                    const radius = this.size * (0.9 + 0.2 * Math.sin(this.pulse * 0.5));
+                    const grad = ctx.createRadialGradient(
+                        this.x, this.y, 0,
+                        this.x, this.y, radius * 6
+                    );
+                    grad.addColorStop(0, `rgba(255, 45, 149, ${alpha * glow * 0.6})`);
+                    grad.addColorStop(1, `rgba(255, 45, 149, 0)`);
+                    ctx.fillStyle = grad;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, radius * 6, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.shadowColor = `rgba(255, 45, 149, ${alpha * 0.4})`;
+                    ctx.shadowBlur = 18;
+                    ctx.fillStyle = `rgba(255, 45, 149, ${alpha * 0.7})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, radius, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                    ctx.fillStyle = `rgba(255, 255, 255, ${alpha * 0.25})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x - radius * 0.2, this.y - radius * 0.2, radius * 0.3, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            function initParticles(count) {
+                particles = [];
+                for (let i = 0; i < count; i++) {
+                    particles.push(new Particle());
+                }
+            }
+
+            function drawParticles() {
+                ctx.clearRect(0, 0, width, height);
+                for (const p of particles) {
+                    p.update();
+                    p.draw();
+                }
+                animationId = requestAnimationFrame(drawParticles);
+            }
+
+            const isMobile = window.innerWidth < 768;
+            const particleCount = isMobile ? 60 : 120;
+            initParticles(particleCount);
+            drawParticles();
+
+            // ---------- FLOATING HEARTS ----------
+            const heartsContainer = document.getElementById('heartsContainer');
+            const heartEmojis = ['❤️', '💖', '💗', '💕', '✨'];
+
+            function createHeart() {
+                const el = document.createElement('span');
+                el.className = 'floating-heart';
+                el.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+                const size = 0.8 + Math.random() * 1.6;
+                el.style.fontSize = size + 'rem';
+                el.style.left = Math.random() * 100 + '%';
+                el.style.animationDuration = 12 + Math.random() * 18 + 's';
+                el.style.animationDelay = Math.random() * 20 + 's';
+                el.style.opacity = 0.2 + Math.random() * 0.25;
+                heartsContainer.appendChild(el);
+                setTimeout(() => {
+                    if (el.parentNode) el.remove();
+                }, 35000);
+            }
+
+            for (let i = 0; i < (isMobile ? 8 : 16); i++) {
+                setTimeout(createHeart, i * 600);
+            }
+            setInterval(createHeart, isMobile ? 4000 : 2800);
+
+            // ---------- TYPEWRITER ----------
+            const typewriterElement = document.getElementById('typewriterText');
+            const fullText = 'Hey, Temitope Rachel ❤️';
+            let charIndex = 0;
+            let isDeleting = false;
+
+            function typewriterLoop() {
+                if (!isDeleting) {
+                    if (charIndex < fullText.length) {
+                        typewriterElement.textContent = fullText.substring(0, charIndex + 1);
+                        charIndex++;
+                        setTimeout(typewriterLoop, 60 + Math.random() * 40);
+                    } else {
+                        setTimeout(() => {
+                            isDeleting = true;
+                            setTimeout(typewriterLoop, 400);
+                        }, 2500);
+                    }
+                } else {
+                    if (charIndex > 0) {
+                        typewriterElement.textContent = fullText.substring(0, charIndex - 1);
+                        charIndex--;
+                        setTimeout(typewriterLoop, 30 + Math.random() * 20);
+                    } else {
+                        isDeleting = false;
+                        setTimeout(typewriterLoop, 600);
+                    }
+                }
+            }
+            setTimeout(typewriterLoop, 400);
+
+            // ---------- SURPRISE MODAL ----------
+            const modalOverlay = document.getElementById('modalOverlay');
+            const surpriseBtn = document.getElementById('surpriseBtn');
+            const modalCloseBtn = document.getElementById('modalCloseBtn');
+
+            function openModal() {
+                modalOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            surpriseBtn.addEventListener('click', openModal);
+            modalCloseBtn.addEventListener('click', closeModal);
+            modalOverlay.addEventListener('click', function(e) {
+                if (e.target === modalOverlay) closeModal();
+            });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                    closeModal();
+                }
+            });
+
+            // ---------- MUSIC (gentle ambient pad) ----------
+            let audioCtx = null;
+            let isMusicPlaying = false;
+            let musicGainNode = null;
+            let musicOscillators = [];
+
+            const musicBtn = document.getElementById('musicBtn');
+            const musicIcon = document.getElementById('musicIcon');
+            const musicLabel = document.getElementById('musicLabel');
+
+            function initAudio() {
+                if (audioCtx) return;
+                try {
+                    audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                } catch (_) {
+                    return;
+                }
+                musicGainNode = audioCtx.createGain();
+                musicGainNode.gain.setValueAtTime(0.06, audioCtx.currentTime);
+                musicGainNode.connect(audioCtx.destination);
+
+                const notes = [261.63, 329.63, 392.00, 523.25];
+                for (let i = 0; i < notes.length; i++) {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(notes[i], audioCtx.currentTime);
+                    osc.detune.setValueAtTime((i - 2) * 2, audioCtx.currentTime);
+                    gain.gain.setValueAtTime(0.12 / notes.length, audioCtx.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.04 / notes.length, audioCtx.currentTime + 0.5);
+                    osc.connect(gain);
+                    gain.connect(musicGainNode);
+                    osc.start(audioCtx.currentTime + i * 0.08);
+                    musicOscillators.push({ osc, gain, baseFreq: notes[i], index: i });
+                }
+                const lfo = audioCtx.createOscillator();
+                const lfoGain = audioCtx.createGain();
+                lfo.type = 'sine';
+                lfo.frequency.setValueAtTime(0.15, audioCtx.currentTime);
+                lfoGain.gain.setValueAtTime(4, audioCtx.currentTime);
+                lfo.connect(lfoGain);
+                lfoGain.connect(musicOscillators[0].osc.frequency);
+                lfoGain.connect(musicOscillators[1].osc.frequency);
+                lfoGain.connect(musicOscillators[2].osc.frequency);
+                lfoGain.connect(musicOscillators[3].osc.frequency);
+                lfo.start(audioCtx.currentTime);
+                lfo.stop(audioCtx.currentTime + 60);
+                musicGainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+                musicGainNode.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 1.2);
+            }
+
+            function toggleMusic() {
+                if (!audioCtx) {
+                    initAudio();
+                    if (!audioCtx) return;
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                if (isMusicPlaying) {
+                    isMusicPlaying = false;
+                    musicIcon.textContent = '🔊';
+                    musicLabel.textContent = 'Play';
+                    if (musicGainNode) {
+                        musicGainNode.gain.setValueAtTime(0.06, audioCtx.currentTime);
+                        musicGainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.6);
+                        setTimeout(() => {
+                            for (const m of musicOscillators) {
+                                try { m.osc.stop(audioCtx.currentTime); } catch (_) {}
+                            }
+                            musicOscillators = [];
+                        }, 700);
+                    }
+                } else {
+                    if (musicOscillators.length === 0) {
+                        initAudio();
+                        if (!audioCtx) return;
+                    }
+                    isMusicPlaying = true;
+                    musicIcon.textContent = '🔇';
+                    musicLabel.textContent = 'Pause';
+                    if (musicGainNode) {
+                        musicGainNode.gain.setValueAtTime(0.03, audioCtx.currentTime);
+                        musicGainNode.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 0.8);
+                    }
+                }
+            }
+
+            musicBtn.addEventListener('click', toggleMusic);
+
+            window.addEventListener('beforeunload', function() {
+                if (animationId) cancelAnimationFrame(animationId);
+                if (audioCtx) {
+                    try { audioCtx.close(); } catch (_) {}
+                }
+            });
+
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    if (animationId) {
+                        cancelAnimationFrame(animationId);
+                        animationId = null;
+                    }
+                } else {
+                    if (!animationId) {
+                        drawParticles();
+                    }
+                }
+            });
+
+        })();
+    </script>
+</body>
+</html>
